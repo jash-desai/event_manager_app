@@ -89,10 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                _auth.currentUser.uid,
-                style: MyFonts.medium.size(22),
-              ),
+             
             ],
           ),
         ],
