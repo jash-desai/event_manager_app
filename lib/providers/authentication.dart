@@ -32,6 +32,14 @@ class Authentication with ChangeNotifier {
     }
   }
 
+  attachImage(String url) async {
+    try {
+      await _auth.currentUser.updatePhotoURL("url");
+    } catch (e) {
+      throw e;
+    }
+  }
+
   showError(String errormessage, BuildContext context) {
     showDialog(
       context: context,

@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import './providers/authentication.dart';
 import './screens/login.dart';
 import './screens/homepage.dart';
-import './screens/splash_screen.dart';
+// import './screens/splash_screen.dart';
 import './screens/signup.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           print('Something has gone wrong!');
         }
 
-        // Once complete, show your application
+        // Once complete, show the application
         if (snapshot.connectionState == ConnectionState.done) {
           return MultiProvider(
             providers: [
@@ -35,8 +35,7 @@ class MyApp extends StatelessWidget {
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: ThemeData.light(),
-              home: SplashScreen(),
+              home: HomePage(),
               routes: {
                 HomePage.routeName: (ctx) => HomePage(),
                 SignUp.routeName: (ctx) => SignUp(),
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
           );
         }
 
-        // Otherwise, show something whilst waiting for initialization to complete
+        // Till then, show something whilst waiting for initialization to complete
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData.light(),

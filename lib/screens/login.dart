@@ -18,10 +18,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // Initializing Fields
   final _formKey = GlobalKey<FormState>();
   String _email, _password;
   var isLoading = false;
 
+  // method to log the user in and navigate to homescreen
+  // also to show a dialog box in case of error
   void tryLogIn() async {
     if (!_formKey.currentState.validate()) {
       return null;
@@ -51,8 +54,10 @@ class _LoginState extends State<Login> {
     SizeConfig().init(context);
     return Scaffold(
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator()) //Show a spinner when loading
           : LayoutBuilder(builder: (context, constraint) {
+              //Else show the main content
               return SingleChildScrollView(
                 child: Stack(
                   children: [
@@ -64,6 +69,10 @@ class _LoginState extends State<Login> {
                         fit: BoxFit.fill,
                       ),
                     ),
+                    // Constraint box is used to properly use singleChildScrollView with Spacer element inside column
+                    // Column by default takes infinite height and singleChildScrollView gives a vertical scrollable area.
+                    // Now using spacer is used to fill empty space but as a column is wrapped inside a singleChildScrollView it forces the column to take infinite space which gives a error
+                    // So to limit the size of colummn constraints are applied so that its height is not more than screen height
                     ConstrainedBox(
                       constraints:
                           BoxConstraints(minHeight: constraint.maxHeight),
@@ -71,8 +80,9 @@ class _LoginState extends State<Login> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AuthScreenIntro(),
-                            Spacer(),
+                            AuthScreenIntro(), // The top header
+                            Spacer(), //To fill all the available empty spaces
+                            //Main Form widget starts here
                             Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: SizeConfig.horizontalBlockSize * 10,
@@ -86,12 +96,14 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                               child: Form(
+                                // Using a form key to communicate with the form element outside of the widget tree for saving and validating stuff
                                 key: _formKey,
                                 child: Column(
                                   children: [
                                     SizedBox(
                                       height: SizeConfig.screenHeight * 0.05,
                                     ),
+                                    // Email text field
                                     TextFormField(
                                       decoration: InputDecoration(
                                         filled: true,
@@ -131,6 +143,7 @@ class _LoginState extends State<Login> {
                                     SizedBox(
                                       height: 15,
                                     ),
+                                    // Password text field
                                     TextFormField(
                                       decoration: InputDecoration(
                                         filled: true,
@@ -150,7 +163,8 @@ class _LoginState extends State<Login> {
                                               BorderSide(color: Colors.red),
                                         ),
                                       ),
-                                      obscureText: true,
+                                      obscureText:
+                                          true, //to hide the characters
                                       keyboardType:
                                           TextInputType.visiblePassword,
                                       textInputAction: TextInputAction.done,
@@ -171,6 +185,7 @@ class _LoginState extends State<Login> {
                                     SizedBox(
                                       height: 15,
                                     ),
+                                    // Login Button
                                     Container(
                                       margin:
                                           EdgeInsets.symmetric(vertical: 12),
@@ -195,6 +210,7 @@ class _LoginState extends State<Login> {
                                     SizedBox(
                                       height: 20,
                                     ),
+                                    // This row widget creates two horizontal lines and places a text between them
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

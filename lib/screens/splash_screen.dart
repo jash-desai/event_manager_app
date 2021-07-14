@@ -1,15 +1,16 @@
 import 'dart:math';
 import 'dart:async';
 
-import '../globals/myColors.dart';
-import '../globals/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../globals/myColors.dart';
+import '../globals/sizeConfig.dart';
 import '../screens/homepage.dart';
 import '../screens/login.dart';
 
+// Splash Screen Animation
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(Duration(seconds: 1)).then((value) {
       scaleController.forward();
     });
 
@@ -39,22 +40,37 @@ class _SplashScreenState extends State<SplashScreen>
             (status) {
               if (status == AnimationStatus.completed) {
                 controller.stop();
+                // Check for valid auth token after animation finishes and navigate to different screens
                 User result = FirebaseAuth.instance.currentUser;
                 if (result != null) {
-                  Navigator.pushReplacement(
-                    context,
-                    AnimatingRoute(
-                      route: HomePage(),
-                    ),
-                  );
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      AnimatingRoute(
+                        route: HomePage(),
+                      ),
+                      (route) => true);
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   AnimatingRoute(
+                  //     route: HomePage(),
+                  //   ),
+                  // );
                 } else {
                   print("False");
-                  Navigator.pushReplacement(
-                    context,
-                    AnimatingRoute(
-                      route: Login(),
-                    ),
-                  );
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      AnimatingRoute(
+                        route: Login(),
+                      ),
+                      (route) => true);
+
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   AnimatingRoute(
+                  //     route: Login(),
+                  //   ),
+                  // );
                 }
 
                 Timer(
@@ -91,6 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      // main screen starts here
       backgroundColor: darkBlue,
       body: Stack(
         children: [
@@ -101,38 +118,32 @@ class _SplashScreenState extends State<SplashScreen>
             ),
           ),
           Center(
-            child: InkWell(
-              // borderRadius: BorderRadius.circular(15),
-              onTap: () {
-                scaleController.forward();
-              },
-              child: CircleAvatar(
-                backgroundColor: Color.fromRGBO(175, 240, 192, 1),
-                radius: SizeConfig.horizontalBlockSize * 25,
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Text(
-                        "D",
-                        style: GoogleFonts.lobster(
-                          fontSize: SizeConfig.horizontalBlockSize * 35,
+            child: CircleAvatar(
+              backgroundColor: Color.fromRGBO(175, 240, 192, 1),
+              radius: SizeConfig.horizontalBlockSize * 25,
+              child: Stack(
+                children: [
+                  Center(
+                    child: Text(
+                      "D",
+                      style: GoogleFonts.lobster(
+                        fontSize: SizeConfig.horizontalBlockSize * 35,
+                      ),
+                    ),
+                  ),
+                  AnimatedBuilder(
+                    animation: scaleAnimation,
+                    builder: (c, ch) => Transform.scale(
+                      scale: scaleAnimation.value,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(175, 240, 192, 1),
                         ),
                       ),
                     ),
-                    AnimatedBuilder(
-                      animation: scaleAnimation,
-                      builder: (c, ch) => Transform.scale(
-                        scale: scaleAnimation.value,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color.fromRGBO(175, 240, 192, 1),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -141,6 +152,8 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 }
+
+// Animationm Logic
 
 class SpritePainter extends CustomPainter {
   final Animation<double> animation;
