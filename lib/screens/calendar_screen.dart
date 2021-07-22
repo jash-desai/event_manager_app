@@ -1,35 +1,25 @@
-import 'package:event_manager/globals/myColors.dart';
-import 'package:event_manager/screens/calendar_screen.dart';
+import 'package:event_manager/globals/myFonts.dart';
+import 'package:event_manager/screens/calendar.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import './drawer.dart';
-import 'package:event_manager/screens/subscription_screen.dart';
-import 'package:event_manager/screens/tasks_screen.dart';
 import '../globals/sizeConfig.dart';
 
-class HomePage extends StatefulWidget {
-  static const routeName = '/home-page';
+class CalendarScreen extends StatefulWidget {
+  static const routeName = '/calendar-page';
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CalendarScreenState createState() => _CalendarScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CalendarScreenState extends State<CalendarScreen> {
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
   double topPadding = 0;
 
   bool isDrawerOpen = false;
-
-  int _selectedIndex = 0;
-  List<Widget> _screens = [TasksScreen(), SubscriptionScreen()];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +44,7 @@ class _HomePageState extends State<HomePage> {
                     // color: kBlue,
                     padding: EdgeInsets.only(left: 5, top: topPadding),
                     child: IntrinsicHeight(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Stack(
                         children: [
                           isDrawerOpen
                               ? IconButton(
@@ -84,62 +73,24 @@ class _HomePageState extends State<HomePage> {
                                     });
                                   },
                                 ),
-                          Container(
-                            padding: EdgeInsets.only(top: 10),
-                            color: matteBlack,
-                            width: SizeConfig.horizontalBlockSize * 20,
-                            height: double.infinity,
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacementNamed(
-                                    CalendarScreen.routeName);
-                              },
-                              icon: Icon(
-                                Icons.calendar_today_outlined,
-                                color: kGrey,
-                                size: SizeConfig.verticalBlockSize * 5,
-                              ),
+                          Center(
+                            child: Text(
+                              DateFormat("dd MMMM ,yyyy")
+                                  .format(DateTime.now()),
+                              style: MyFonts.bold
+                                  .size(SizeConfig.textScaleFactor * 20),
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  _screens[_selectedIndex],
+                  Calendar(),
                 ],
               ),
             ),
-
-            // _screens[_selectedIndex],
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              _selectedIndex == 0 ? Icons.home : Icons.home_outlined,
-              size: 30,
-            ),
-            backgroundColor: Color.fromRGBO(23, 23, 23, 1),
-            label: 'My Tasks',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              _selectedIndex == 0
-                  ? Icons.calendar_today_outlined
-                  : Icons.calendar_today_rounded,
-              size: 30,
-            ),
-            label: 'Suscriptions',
-          ),
-        ],
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        selectedItemColor: kWhite,
-        iconSize: 40,
-        onTap: _onItemTapped,
-        elevation: 5,
       ),
     );
   }

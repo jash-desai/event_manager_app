@@ -1,10 +1,10 @@
+import 'package:event_manager/screens/calendar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:provider/provider.dart';
 
 import '../globals/myFonts.dart';
 import '../providers/authentication.dart';
-import '../screens/homepage.dart';
 import '../screens/login.dart';
 import '../widgets/auth_screen_intro.dart';
 import '../globals/sizeConfig.dart';
@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
     try {
       await authInstance.signUp(_name, _email, _password);
 
-      Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+      Navigator.of(context).pushReplacementNamed(CalendarScreen.routeName);
     } catch (error) {
       authInstance.showError(error.toString(), context);
     }
