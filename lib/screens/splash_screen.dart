@@ -1,13 +1,15 @@
 import 'dart:math';
 import 'dart:async';
 
+import 'package:event_manager/providers/tasks.dart';
+import 'package:event_manager/screens/calendar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../globals/myColors.dart';
 import '../globals/sizeConfig.dart';
-import '../screens/homepage.dart';
 import '../screens/login.dart';
 
 // Splash Screen Animation
@@ -24,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(Duration(seconds: 1)).then((value) {
+    Provider.of<Tasks>(context, listen: false).fetchAndSetTasks();
+    Future.delayed(Duration(seconds: 3)).then((value) {
       scaleController.forward();
     });
 
@@ -40,21 +42,22 @@ class _SplashScreenState extends State<SplashScreen>
             (status) {
               if (status == AnimationStatus.completed) {
                 controller.stop();
+                Timer(
+                  Duration(milliseconds: 300),
+                  () {
+                    scaleController.reset();
+                  },
+                );
+
                 // Check for valid auth token after animation finishes and navigate to different screens
                 User result = FirebaseAuth.instance.currentUser;
                 if (result != null) {
                   Navigator.pushAndRemoveUntil(
                       context,
                       AnimatingRoute(
-                        route: HomePage(),
+                        route: CalendarScreen(),
                       ),
-                      (route) => true);
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   AnimatingRoute(
-                  //     route: HomePage(),
-                  //   ),
-                  // );
+                      (route) => false);
                 } else {
                   print("False");
 
@@ -63,23 +66,8 @@ class _SplashScreenState extends State<SplashScreen>
                       AnimatingRoute(
                         route: Login(),
                       ),
-                      (route) => true);
-
-                  // Navigator.pushReplacement(
-                  //   context,
-                  //   AnimatingRoute(
-                  //     route: Login(),
-                  //   ),
-                  // );
+                      (route) => false);
                 }
-
-                Timer(
-                  Duration(milliseconds: 300),
-                  () {
-                    // print('worked');
-                    scaleController.reset();
-                  },
-                );
               }
             },
           );

@@ -40,6 +40,19 @@ class Authentication with ChangeNotifier {
     }
   }
 
+  changeName(String newName, BuildContext context) async {
+    try {
+      if (newName.isNotEmpty) {
+        await _auth.currentUser.updateDisplayName(newName);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Name updated")));
+      }
+    } catch (error) {
+      print(error);
+    }
+    notifyListeners();
+  }
+
   showError(String errormessage, BuildContext context) {
     showDialog(
       context: context,
