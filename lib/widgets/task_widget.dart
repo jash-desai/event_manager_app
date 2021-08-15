@@ -15,38 +15,49 @@ class TaskWidget extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2.5),
+      // margin: EdgeInsets.symmetric(vertical: 2.5),
       child: Card(
         shape: RoundedRectangleBorder(
-            side: BorderSide(color: kGrey, width: 0.3),
-            borderRadius: BorderRadius.circular(20)),
+          side: BorderSide(color: kGrey, width: 0.3),
+          borderRadius: BorderRadius.circular(13),
+        ),
         elevation: 4,
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.only(right: 8, top: 8, left: 10, bottom: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "${task.title}",
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: MyFonts.bold.size(22).letterSpace(0.4),
+              Container(
+                child: Text(
+                  "${task.title}",
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: MyFonts.bold.size(18),
+                ),
               ),
               MySpaces.vSmallGapInBetween,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    DateFormat("d MMMM yyyy").format(task.date),
-                    style: MyFonts.bold
-                        .setColor(kGrey)
-                        .size(SizeConfig.horizontalBlockSize * 3.5),
+                  Container(
+                    width: 100,
+                    child: Text(
+                      DateFormat("d MMMM yy").format(task.date),
+                      overflow: TextOverflow.ellipsis,
+                      style: MyFonts.medium
+                          .setColor(kGrey)
+                          .size(SizeConfig.horizontalBlockSize * 3),
+                    ),
                   ),
-                  Text(
-                    "${func.hours(task.startTime)}:${func.minutes(task.startTime)}${func.timeMode(task.startTime)} - ${func.hours(task.endTime)}:${func.minutes(task.endTime)}${func.timeMode(task.endTime)}",
-                    style: MyFonts.bold
-                        .setColor(kGrey)
-                        .size(SizeConfig.horizontalBlockSize * 3.5),
+                  Container(
+                    width: 150,
+                    child: Text(
+                      "${func.hours(task.startTime)}:${func.minutes(task.startTime)}${func.timeMode(task.startTime)} - ${func.hours(task.endTime)}:${func.minutes(task.endTime)}${func.timeMode(task.endTime)}",
+                      overflow: TextOverflow.ellipsis,
+                      style: MyFonts.medium
+                          .setColor(kGrey)
+                          .size(SizeConfig.horizontalBlockSize * 3),
+                    ),
                   ),
                 ],
               )

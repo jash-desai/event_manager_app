@@ -28,7 +28,7 @@ class _TasksScreenState extends State<TasksScreen> {
   // final _auth = FirebaseAuth.instance;
 
   final Group allTasksCat = Group(
-    icon: Icons.today,
+    icon: Icons.today_outlined,
     color: kWhite,
   );
   Group currentCat;
@@ -45,9 +45,9 @@ class _TasksScreenState extends State<TasksScreen> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(horizontal: 13),
             // color: kBlue,
-            width: SizeConfig.horizontalBlockSize * 80,
+            width: SizeConfig.horizontalBlockSize * 82,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -64,7 +64,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       Text(
                         currentCat.title ?? "All Task",
                         style: MyFonts.bold
-                            .size(SizeConfig.horizontalBlockSize * 9),
+                            .size(SizeConfig.horizontalBlockSize * 8),
                       ),
                       MySpaces.vGapInBetween,
                       if (currentCat == allTasksCat)
@@ -87,20 +87,20 @@ class _TasksScreenState extends State<TasksScreen> {
                 //   ),
                 // ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: EdgeInsets.symmetric(vertical: 4),
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () => Navigator.of(context)
                         .pushNamed(CreateNewTask.routeName),
                     child: Text(
-                      "+ ADD NEW TASK",
+                      "📝   ADD NEW TASK",
                       style: MyFonts.medium
-                          .size(SizeConfig.horizontalBlockSize * 5),
+                          .size(SizeConfig.horizontalBlockSize * 4),
                     ),
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: EdgeInsets.symmetric(vertical: 13),
                       primary: kWhite,
                       backgroundColor: Colors.blueAccent,
                     ),
@@ -110,7 +110,7 @@ class _TasksScreenState extends State<TasksScreen> {
             ),
           ),
           Container(
-            width: SizeConfig.horizontalBlockSize * 20,
+            width: SizeConfig.horizontalBlockSize * 18,
             color: matteBlack,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +119,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 MySpaces.vGapInBetween,
                 CategoryButton(
                     Group(
-                      icon: Icons.today,
+                      icon: Icons.today_rounded,
                       color: kWhite,
                     ), () {
                   setState(() {
@@ -144,7 +144,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   icon: Icon(
                     Icons.add,
                     color: kGrey,
-                    size: SizeConfig.verticalBlockSize * 5,
+                    size: SizeConfig.verticalBlockSize * 4,
                   ),
                 ),
                 MySpaces.vSmallGapInBetween,

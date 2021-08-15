@@ -7,12 +7,14 @@ class Group {
   final String title;
   final IconData icon;
   final Color color;
+  // final double iconSize;
 
   Group({
     this.id,
     this.title,
     this.icon,
     this.color,
+    // this.iconSize,
   });
 
   Map<String, dynamic> toMap() {

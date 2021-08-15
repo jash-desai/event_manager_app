@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             padding: EdgeInsets.only(top: 10),
                             color: matteBlack,
-                            width: SizeConfig.horizontalBlockSize * 20,
+                            width: SizeConfig.horizontalBlockSize * 18,
                             height: double.infinity,
                             child: IconButton(
                               onPressed: () {
@@ -95,9 +95,9 @@ class _HomePageState extends State<HomePage> {
                                     CalendarScreen.routeName);
                               },
                               icon: Icon(
-                                Icons.calendar_today_outlined,
-                                color: kGrey,
-                                size: SizeConfig.verticalBlockSize * 5,
+                                Icons.calendar_today_rounded,
+                                color: Colors.purple.shade500,
+                                size: SizeConfig.verticalBlockSize * 4.5,
                               ),
                             ),
                           ),

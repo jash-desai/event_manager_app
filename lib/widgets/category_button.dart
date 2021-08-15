@@ -13,25 +13,28 @@ class CategoryButton extends StatelessWidget {
   const CategoryButton(this.grp, this.function);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.horizontalBlockSize * 2.5),
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: AnimatedButton(
-        width: SizeConfig.horizontalBlockSize * 15,
-        child: (grp.icon != null)
-            ? Icon(
-                grp.icon,
-                color: grp.color,
-              )
-            : Text(
-                grp.title.toUpperCase().substring(0, 1),
-                style: MyFonts.bold.setColor(grp.color).size(30),
-              ),
-        color: matteBlackLite,
-        onPressed: function,
-        enabled: true,
-        shadowDegree: ShadowDegree.light,
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: SizeConfig.horizontalBlockSize * 2.5,
+        ),
+        margin: EdgeInsets.symmetric(vertical: 8),
+        child: AnimatedButton(
+          width: SizeConfig.horizontalBlockSize * 13,
+          child: (grp.icon != null)
+              ? Icon(
+                  grp.icon,
+                  color: grp.color,
+                )
+              : Text(
+                  grp.title.toUpperCase().substring(0, 1),
+                  style: MyFonts.bold.setColor(grp.color).size(25),
+                ),
+          color: matteBlackLite,
+          onPressed: function,
+          enabled: true,
+          shadowDegree: ShadowDegree.light,
+        ),
       ),
     );
   }
