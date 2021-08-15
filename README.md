@@ -1,16 +1,18 @@
-# event_manager
+# The only Event Manager App you'll ever need!
+## ⚙️ Tech-Stack
+The application is built entirely with Flutter. For the backend services, I have made use of Firebase.
 
-A new Flutter project.
+## 🏃🏻 Getting Started
+### Prerequisites:
+* Get Flutter up and running. For this purpose visit - [Flutter docs](https://flutter.dev/docs/get-started/install).
 
-## Getting Started
+### Building from source:
+* If you are using an IDE like [Android Studio](https://developer.android.com/studio), you may use suitable GUI/hotkeys. Here is how you can work things from the terminal.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    ```
+    git clone https://github.com/jash-desai/event_manager_app.git
+    cd event_manager_app
+    flutter run
+    ```
+</br>
+<img src = "https://raw.githubusercontent.com/jash-desai/jash-desai/main/bottom-footer.svg">

@@ -1,3 +1,4 @@
+import 'package:event_manager/globals/myColors.dart';
 import 'package:event_manager/globals/mySpaces.dart';
 import 'package:event_manager/models/group.dart';
 import 'package:event_manager/providers/database_helper.dart';
@@ -52,6 +53,7 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: matteBlack,
         title: Text("Add Category"),
       ),
       body: isLoading
@@ -60,11 +62,18 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(labelText: "Title"),
-                    onSaved: (value) {
-                      _title = value;
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 10),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: "Title",
+                        icon: Icon(Icons.edit),
+                        // labelStyle:
+                      ),
+                      onSaved: (value) {
+                        _title = value;
+                      },
+                    ),
                   ),
                   MySpaces.vLargeGapInBetween,
                   Spacer(),
@@ -78,7 +87,22 @@ class _EditCategoryScreenState extends State<EditCategoryScreen> {
                       selectedColor: _color,
                     ),
                   ),
-                  TextButton(onPressed: submit, child: Text("Submit")),
+                  TextButton(
+                    style: ButtonStyle(
+                      enableFeedback: true,
+                      backgroundColor: MaterialStateProperty.all(matteBlack),
+                    ),
+                    onPressed: submit,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: Text(
+                          "Submit",
+                          style: TextStyle(fontSize: 25),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

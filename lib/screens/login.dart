@@ -55,7 +55,9 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: isLoading
           ? Center(
-              child: CircularProgressIndicator()) //Show a spinner when loading
+              child: CircularProgressIndicator(),
+              //Show a spinner when loading
+            )
           : LayoutBuilder(builder: (context, constraint) {
               //Else show the main content
               return SingleChildScrollView(
