@@ -77,9 +77,10 @@ class _SignUpState extends State<SignUp> {
                               AuthScreenIntro(),
                               Spacer(),
                               Container(
+                                height: 550,
                                 padding: EdgeInsets.symmetric(
                                   horizontal:
-                                      SizeConfig.horizontalBlockSize * 10,
+                                      SizeConfig.horizontalBlockSize * 5,
                                 ),
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -274,7 +275,8 @@ class _SignUpState extends State<SignUp> {
                                                   BorderRadius.circular(12),
                                             ),
                                             fixedSize: Size(1000, 50),
-                                            primary: darkBlue,
+                                            // primary: darkBlue,
+                                            primary: Colors.purple[700],
                                           ),
                                         ),
                                       ),
