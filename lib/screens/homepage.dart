@@ -96,8 +96,9 @@ class _HomePageState extends State<HomePage> {
                               },
                               icon: Icon(
                                 Icons.calendar_today_rounded,
-                                color: Colors.purple.shade500,
-                                size: SizeConfig.verticalBlockSize * 4.5,
+                                // color: Colors.purple.shade500,
+                                color: kGrey,
+                                size: SizeConfig.verticalBlockSize * 4,
                               ),
                             ),
                           ),

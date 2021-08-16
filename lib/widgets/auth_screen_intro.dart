@@ -20,7 +20,7 @@ class AuthScreenIntro extends StatelessWidget {
               backgroundColor: Color.fromRGBO(175, 240, 192, 1),
               radius: 28,
               child: Text(
-                "d",
+                ".",
                 style: MyFonts.bold.factor(8).setColor(Colors.blue[800]),
               ),
             ),

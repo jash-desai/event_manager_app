@@ -110,10 +110,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             ),
                             MySpaces.hSmallestGapInBetween,
                             Text(
-                              "Change User Name",
+                              "Change Username",
                               style: MyFonts.medium
                                   .setColor(kWhite)
-                                  .size(SizeConfig.horizontalBlockSize * 5),
+                                  .size(SizeConfig.horizontalBlockSize * 4.2),
                             ),
                           ],
                         ),
@@ -133,7 +133,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                 e,
                                 style: MyFonts.medium
                                     .setColor(kWhite)
-                                    .size(SizeConfig.horizontalBlockSize * 5),
+                                    .size(SizeConfig.horizontalBlockSize * 4),
                               ),
                             ],
                           ),
@@ -149,18 +149,20 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            'Settings',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                          GestureDetector(
+                            child: Text(
+                              'Settings',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Container(
                             width: 2,
-                            height: 20,
+                            height: 25,
                             color: Colors.white,
                           ),
                           SizedBox(
@@ -179,11 +181,22 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                     error.toString(), context);
                               });
                             },
-                            child: Text(
-                              'Log out',
-                              style: TextStyle(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.logout_outlined,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    'Log out',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                         ],
