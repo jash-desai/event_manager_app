@@ -87,11 +87,13 @@ class _LoginState extends State<Login> {
                             //Main Form widget starts here
                             Container(
                               padding: EdgeInsets.symmetric(
-                                horizontal: SizeConfig.horizontalBlockSize * 10,
+                                horizontal: SizeConfig.horizontalBlockSize * 5,
                               ),
+                              height: 450,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white,
+                                // color: Colors.purple.shade100,
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20),
@@ -205,7 +207,8 @@ class _LoginState extends State<Login> {
                                                 BorderRadius.circular(12),
                                           ),
                                           fixedSize: Size(1000, 50),
-                                          primary: darkBlue,
+                                          // primary: darkBlue,
+                                          primary: Colors.purple[700],
                                         ),
                                       ),
                                     ),
@@ -252,6 +255,7 @@ class _LoginState extends State<Login> {
                                     ),
                                     SignInButton(
                                       Buttons.Google,
+                                      // Buttons.GoogleDark,
                                       onPressed: () => print("Hemlo"),
                                     ),
                                     SizedBox(
