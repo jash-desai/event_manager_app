@@ -14,5 +14,5 @@ The application is built entirely with Flutter. For the backend services, I have
     cd event_manager_app
     flutter run
     ```
-</br>
-<img src = "https://raw.githubusercontent.com/jash-desai/jash-desai/main/bottom-footer.svg">
+<!-- </br> -->
+<!-- <img src = "https://raw.githubusercontent.com/jash-desai/jash-desai/main/bottom-footer.svg"> -->
