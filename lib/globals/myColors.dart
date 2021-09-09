@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Frequently Used color codes.
+
 const Color kGrey = Color.fromRGBO(117, 117, 117, 1);
 const Color kGreyLite = Color.fromRGBO(117, 117, 117, 0.13);
 const Color kYellow = Color.fromRGBO(253, 216, 53, 1);
